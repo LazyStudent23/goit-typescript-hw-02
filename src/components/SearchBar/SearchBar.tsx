@@ -1,15 +1,26 @@
 import { IoSearch } from "react-icons/io5";
-import { Field, Form, Formik } from "formik";
+import { Field, Form, Formik, FormikHelpers } from "formik";
 import css from "../SearchBar/SearchBar.module.css";
 import { SearchPhotosSchema } from "../utils/searchBarSchema";
 import { toast } from "react-hot-toast";
 
-const INITIAL_VALUES = {
+interface IInitialValues {
+  searchTerm: string;
+}
+
+const INITIAL_VALUES: IInitialValues = {
   searchTerm: "",
 };
 
-const SearchBar = ({ onSearch }) => {
-  const handleSubmit = (values, actions) => {
+interface SearchBarProps {
+  onSearch: (searchQuery: string) => void;
+}
+
+const SearchBar = ({ onSearch }: SearchBarProps) => {
+  const handleSubmit = (
+    values: IInitialValues,
+    actions: FormikHelpers<IInitialValues>
+  ) => {
     if (values.searchTerm.trim() === "") {
       toast.error(
         "Sorry, you cant search without query term! Please enter search word first!"

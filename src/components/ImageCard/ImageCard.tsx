@@ -1,6 +1,12 @@
+import { Photo } from "../../types/types";
 import css from "../ImageCard/ImageCard.module.css";
 
-const ImageCard = ({ onModalOpen, item }) => {
+interface ImageCardProps {
+  item: Photo,
+  onModalOpen: (param: string) => void,
+}
+
+const ImageCard = ({ onModalOpen, item }: ImageCardProps) => {
   return (
     <li key={item.id} className={css.listItem}>
       <img

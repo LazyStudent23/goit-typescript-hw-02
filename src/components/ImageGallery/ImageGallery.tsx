@@ -1,7 +1,13 @@
+import { Photo } from "../../types/types";
 import ImageCard from "../ImageCard/ImageCard";
 import css from "../ImageGallery/ImageGallery.module.css";
 
-const ImageGallery = ({ onModalOpen, photos }) => {
+interface ImageGalleryProps {
+  onModalOpen: (param: string) => void,
+  photos: Photo[]
+}
+
+const ImageGallery = ({ onModalOpen, photos }: ImageGalleryProps) => {
   return (
     <ul
       className={css.galleryList}
