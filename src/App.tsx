@@ -71,18 +71,23 @@ const App = () => {
     <div>
       <SearchBar onSearch={onSearch} />
       <main>
-        {photos !== null && <ImageGallery onModalOpen={onModalOpen} photos={photos} />}
+        {photos !== null && (
+          <ImageGallery onModalOpen={onModalOpen} photos={photos} />
+        )}
         {isLoading && <Loader />}
         {error && <ErrorMessage message={error} />}
-        {Array.isArray(photos) && photos.length > 0 && totalPages !== null && page < totalPages && (
-          <LoadMoreBtn onClick={onLoadMore} />
-        )}
+        {Array.isArray(photos) &&
+          photos.length > 0 &&
+          totalPages !== null &&
+          page < totalPages && <LoadMoreBtn onClick={onLoadMore} />}
 
-        <ImageModal
-          modalIsOpen={isModalOpen}
-          closeModal={onCloseModal}
-          imgFullUrl={imgFullUrl}
-        />
+        {imgFullUrl !== null && (
+          <ImageModal
+            modalIsOpen={isModalOpen}
+            closeModal={onCloseModal}
+            imgFullUrl={imgFullUrl}
+          />
+        )}
       </main>
       <Toaster position="top-center" reverseOrder={false} />
     </div>
